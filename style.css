@@ -8,3 +8,12 @@ h1 {
   color: lightcoral;
   text-align: center;
 }
+/* To-Do List Styles (Main) */
+#list-container {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
