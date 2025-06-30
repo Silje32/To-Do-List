@@ -7,7 +7,7 @@ const taskForm = document.querySelector("#task-form");
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const formData = new FormData.get("task-input");
+  const formData = new FormData(taskForm);
   const userInput = formData.get("task-input");
 
   if (!userInput) {
