@@ -14,7 +14,7 @@ taskForm.addEventListener("submit", (e) => {
     return alert("Input cannot be empty.");
   }
   /* Pushe tasks */
-  taskForm.push({
+  tasks.push({
     timestamp: new Date(),
     description: userInput,
     completed: false,
