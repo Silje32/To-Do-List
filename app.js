@@ -54,7 +54,8 @@ const buildPage = (tasksArr) => {
     descriptionElement.classList.add("description");
     descriptionElement.textContent = task.description;
 
-    //Button
+    //Buttons
+    const inputElement = completeTaskInput(task);
 
     taskContainer.append(timestampElement, descriptionElement, inputElement);
 
@@ -62,5 +63,5 @@ const buildPage = (tasksArr) => {
   });
 };
 const renderPage = () => {
-  builldPage(filterArray(tasks));
+  buildPage(filterArray(tasks));
 };
