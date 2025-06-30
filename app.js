@@ -31,14 +31,16 @@ const completeTaskInput = (task) => {
     task.completed = e.target.checked;
     renderPage();
   });
+
   return inputElement;
 };
 
-constfilterArray = (tasksArr) => {
+const filterArray = (tasksArr) => {
   return tasksArr.filter((task) => filters.showCompleted || !task.completed);
 };
 
-const builldPage = (tasksArr) => {
+const buildPage = (tasksArr) => {
+  console.log(tasksArr);
   listContainer.replaceChildren();
   tasksArr.forEach((task) => {
     const taskContainer = document.createElement("div");
