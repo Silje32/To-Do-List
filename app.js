@@ -1,6 +1,7 @@
 const listContainer = document.querySelector("#list-container");
 
 let tasks = [];
+let filters = { showCompleted: false };
 
 const taskForm = document.querySelector("#task-form");
 taskForm.addEventListener("submit", (e) => {
@@ -21,6 +22,22 @@ taskForm.addEventListener("submit", (e) => {
   renderPage();
 });
 
+const completeTaskInput = (task) => {
+  const inputElement = document.createElement("input");
+  inputElement.type = "checkbox";
+  inputElement.checked = task.completed;
+
+  inputElement.addEventListener("change", (e) => {
+    task.completed = e.target.checked;
+    renderPage();
+  });
+  return inputElement;
+};
+
+constfilterArray = (tasksArr) => {
+  return tasksArr.filter((task) => filters.showCompleted || !task.completed);
+};
+
 const builldPage = (tasksArr) => {
   listContainer.replaceChildren();
   tasksArr.forEach((task) => {
@@ -35,10 +52,13 @@ const builldPage = (tasksArr) => {
     descriptionElement.classList.add("description");
     descriptionElement.textContent = task.description;
 
-    taskContainer.append(timestampElement, descriptionElement);
+    //Button
+
+    taskContainer.append(timestampElement, descriptionElement, inputElement);
+
     listContainer.prepend(taskContainer);
   });
 };
 const renderPage = () => {
-  builldPage(tasks);
+  builldPage(filterArray(tasks));
 };
