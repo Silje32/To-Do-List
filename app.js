@@ -1,4 +1,5 @@
 const listContainer = document.querySelector("#list-container");
+const taskInput = document.querySelector("#task-input");
 const toggleShowCompleted = document.querySelector("#show-completed");
 const sortBy = document.querySelector("#sort-by");
 
@@ -32,6 +33,9 @@ taskForm.addEventListener("submit", (e) => {
   if (!userInput) {
     return alert("Input cannot be empty.");
   }
+  // Clear the input field after submission
+  taskInput.value = "";
+
   /* Pushe tasks */
   tasks.push({
     timestamp: new Date(),
@@ -96,31 +100,31 @@ const deleteTaskButton = (task) => {
 
 const filterArray = (tasksArr) => {
   return tasksArr
-      .filter(task => filters.showCompleted || !task.completed)
-};    .sort(sortArray);
-
+    .filter((task) => filters.showCompleted || !task.completed)
+    .sort(sortArray);
+};
 // Sort the array
 const sortArray = (a, b) => {
   // Eldste først
-   if (filters.sortType === "time asc") {
-     return new Date(b.timestamp) - new Date(a.timestamp);
-}
+  if (filters.sortType === "time asc") {
+    return new Date(b.timestamp) - new Date(a.timestamp);
+  }
 
-// Nyeste først 
-else if (filters.sortType === "time-desc") {
+  // Nyeste først
+  else if (filters.sortType === "time-desc") {
     return new Date(a.timestamp) - new Date(b.timestamp);
-}
+  }
 
-// A til Å 
+  // A til Å
   else if (filters.sortType === "alpha-asc") {
     return a.description.localeCompare(b.description);
   }
 
-// Å til A
+  // Å til A
   else if (filters.sortType === "alpha-desc") {
     return a.description.localeCompare(b.description);
   }
-} 
+};
 
 const buildPage = (tasksArr) => {
   console.log(tasksArr);
@@ -131,7 +135,7 @@ const buildPage = (tasksArr) => {
 
     const timestampElement = document.createElement("p");
     timestampElement.classList.add("datetime");
-    timestampElement.textContent = task.timestamp;
+    timestampElement.textContent = task.timestamp.toLocaleString("en-UK");
 
     const descriptionElement = document.createElement("input");
     descriptionElement.classList.add("description");
