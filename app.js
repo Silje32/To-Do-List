@@ -9,6 +9,7 @@ let filters = { showCompleted: false, sortType: "time-desc" };
 const saveTasksToStorage = () =>
   localStorage.setItem("tasks", JSON.stringify(tasks));
 
+// Sort a todo
 sortBy.addEventListener("change", (e) => {
   filters.sortType = e.target.value;
   renderPage();
@@ -20,6 +21,7 @@ toggleShowCompleted.addEventListener("change", (e) => {
   renderPage();
 });
 
+// Make a todo
 const taskForm = document.querySelector("#task-form");
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -54,6 +56,7 @@ const completeTaskInput = (task) => {
   return inputElement;
 };
 
+// Edit a todo
 const editTaskButton = (task, descriptionElement) => {
   const buttonElement = document.createElement("button");
   buttonElement.classList.add("edit-button");
@@ -72,6 +75,7 @@ const editTaskButton = (task, descriptionElement) => {
   */
 };
 
+// Delete a todo
 const deleteTaskButton = (task) => {
   const buttonElement = document.createElement("button");
   buttonElement.classList.add("delete-button");
@@ -91,8 +95,32 @@ const deleteTaskButton = (task) => {
 };
 
 const filterArray = (tasksArr) => {
-  return tasksArr.filter((task) => filters.showCompleted || !task.completed);
-};
+  return tasksArr
+      .filter(task => filters.showCompleted || !task.completed)
+};    .sort(sortArray);
+
+// Sort the array
+const sortArray = (a, b) => {
+  // Eldste først
+   if (filters.sortType === "time asc") {
+     return new Date(b.timestamp) - new Date(a.timestamp);
+}
+
+// Nyeste først 
+else if (filters.sortType === "time-desc") {
+    return new Date(a.timestamp) - new Date(b.timestamp);
+}
+
+// A til Å 
+  else if (filters.sortType === "alpha-asc") {
+    return a.description.localeCompare(b.description);
+  }
+
+// Å til A
+  else if (filters.sortType === "alpha-desc") {
+    return a.description.localeCompare(b.description);
+  }
+} 
 
 const buildPage = (tasksArr) => {
   console.log(tasksArr);
@@ -138,3 +166,28 @@ const renderPage = () => {
     Return = Returnerer en verdi ut av funksjonen 
 
 */
+
+/* 
+TODO Calculator :
+- input
+- add
+- subtract
+- multiply
+- divide
+
+const add = (a, b) => return a + b 
+
+*/
+
+/* 
+Lage todo  -  Submit 
+Sortere todos. - 
+Fjerne todos - Delete
+Edit todos  - Edit
+Delete todos 
+Complete todo - 
+*/
+
+// Lage en todo
+// ------
+//
