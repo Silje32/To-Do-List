@@ -1,12 +1,18 @@
 const listContainer = document.querySelector("#list-container");
 const toggleShowCompleted = document.querySelector("#show-completed");
+const sortBy = document.querySelector("#sort-by");
 
 let tasks = [];
-let filters = { showCompleted: false };
+let filters = { showCompleted: false, sortType: "time-desc" };
 
 // Local Storage
 const saveTasksToStorage = () =>
   localStorage.setItem("tasks", JSON.stringify(tasks));
+
+sortBy.addEventListener("change", (e) => {
+  filters.sortType = e.target.value;
+  renderPage();
+});
 
 toggleShowCompleted.addEventListener("change", (e) => {
   // filters.showCompleted = !filters.showCompleted
