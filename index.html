@@ -16,6 +16,12 @@
       </form>
       <label for="show-completed">Show Completed Tasks</label>
       <input type="checkbox" id="show-completed" />
+      <select name="sort-by" id="sort-by">
+        <option value="time-desc">Nyeste først</option>
+        <option value="time-asc">Eldste først</option>
+        <option value="alpha-asc">A til Å</option>
+        <option value="alpha-desc">Å til A</option>
+      </select>
     </header>
     <main id="list-container"></main>
   </body>
