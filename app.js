@@ -1,7 +1,18 @@
 const listContainer = document.querySelector("#list-container");
+const toggleShowCompleted = document.querySelector("#show-completed");
 
 let tasks = [];
 let filters = { showCompleted: false };
+
+// Local Storage
+const saveTasksToStorage = () =>
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+toggleShowCompleted.addEventListener("change", (e) => {
+  // filters.showCompleted = !filters.showCompleted
+  filters.showCompleted = e.target.checked;
+  renderPage();
+});
 
 const taskForm = document.querySelector("#task-form");
 taskForm.addEventListener("submit", (e) => {
@@ -19,6 +30,7 @@ taskForm.addEventListener("submit", (e) => {
     description: userInput,
     completed: false,
   });
+  saveTasksToStorage();
   renderPage();
 });
 
@@ -29,6 +41,7 @@ const completeTaskInput = (task) => {
 
   inputElement.addEventListener("change", (e) => {
     task.completed = e.target.checked;
+    saveTasksToStorage();
     renderPage();
   });
 
@@ -63,5 +76,9 @@ const buildPage = (tasksArr) => {
   });
 };
 const renderPage = () => {
+  const storedTasks = localStorage.getItem("tasks");
+  if (storedTasks) {
+    tasks = JSON.parse(storedTasks);
+  }
   buildPage(filterArray(tasks));
 };
