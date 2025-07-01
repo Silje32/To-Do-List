@@ -5,15 +5,17 @@
     <script src="app.js" defer></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To Do Liste</title>
+    <title>To Do List</title>
   </head>
   <body>
     <header>
-      <h1>To Do Liste</h1>
+      <h1>To Do List</h1>
       <form id="task-form">
         <input type="text" id="task-input" name="task-input" />
         <input type="submit" />
       </form>
+      <label for="show-completed">Show Completed Tasks</label>
+      <input type="checkbox" id="show-completed" />
     </header>
     <main id="list-container"></main>
   </body>
